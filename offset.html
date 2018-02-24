@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>offset</title>
+    <style type="text/css">
+        #offset{
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin: 20px;
+            padding: 30px;
+            /*position: relative;*/
+            /*left: 20px;*/
+            border:2px solid #000;
+        }
+    </style>
+</head>
+<body>
+<!--<div style="position: relative">-->
+    <div id="offset"></div>
+<!--</div>-->
+    
+
+</body>
+<script type="application/javascript">
+/*
+    1. offset 系列
+       offset：偏移、补偿、位移
+       offset 系列是 js 中的一套获取元素尺寸的便捷办法。
+    （1） offsetWidth 和 offsetHeight （检测盒子自身宽高+padding+border）
+            offsetWidth = width + padding + border；
+            offsetHeight = Height + padding + border；
+
+ ***（2） offsetLeft 和 offsetTop  （检测距离父盒子有定位的左/上面的距离）
+            返回距上级盒子中带有定位的盒子左边和上边的距离。和盒子本身有无定位无关。
+            如果父级都没有定位则以 body 为准。
+            offsetLeft 从父级的 padding 开始算，父级的 border 不算。
+            在父盒子有定位的情况下，offsetLeft == style.left (去掉px)
+            调用者：任意元素。(盒子为主)
+            作用：距离父系盒子中带有定位的距离。
+
+    （3） offsetParent   （检测父系盒子中带有定位的父盒子节点）（极少用）
+            ① 返回该对象带有定位的父级
+            ② 如果当前元素的父级元素没有CSS定位（position为absolute / relative / fixed）， offsetParent为body；
+            如果当前元素的父级元素中有CSS定位（position为absolute / relative / fixed），offsetParent
+            取最近的那个有定位的父级元素。和盒子本身有无定位无关。
+
+    （4） offsetLeft 和 style.left 区别
+            ① 最大区别在于offsetLeft 可以返回没有定位盒子的距离左侧的位置。 而 style.left不可以。
+            ② offsetLeft 返回的是数字，而 style.left 返回的是字符串，除了数字外还带有单位：px。
+            ③ offsetTop 只读，而 style.top 可读写。（只读是获取值，可写是赋值）
+            ④ 如果没有给 HTML 元素指定过 top 样式，则style.top 返回的是空字符串。
+            （style.left在等号的左边和右边还不一样。左边的时候是属性，右边的时候是值。）
+  */
+    var divOffset=document.getElementById('offset');
+    console.log('offsetHeight  '+divOffset.offsetHeight);//260
+    console.log('offsetWidth  '+divOffset.offsetWidth);//260
+    console.log('offsetLeft  '+divOffset.offsetLeft);//28  多的8px主要是body有一个外边距 而上边距已经被div重复掉了
+    console.log('style.left  '+divOffset.style.left);//为空， 1.定义了position：relative或absolute属性的元素才有left属性，元素都有offsetLeft属性。
+                                                            //2.元素内联样式中设置了left，才能通过div.style.left获取；offsetLeft直接通过div.offsetLeft获取。
+                                                            //3.left可读可写，获取到的是字符串；offsetLeft只读，获取到的是数字。
+    console.log('offsetTop  '+divOffset.offsetTop);//20
+    console.log('offsetParent   '+divOffset.offsetParent);//[object HTMLBodyElement]  body对象
+
+</script>
+</html>

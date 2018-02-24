@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>scroll</title>
+    <style type="text/css">
+        #client{
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin: 20px;
+            padding: 50px;
+            border:1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+<div style="width: 500px;margin: 0 auto">
+    <div id="client"></div>
+</div>
+
+</body>
+<script type="application/javascript">
+    /*3. client 系列
+         （1）clientWidth 和 clientHeight
+         clientWidth：获取网页可视区域宽度（两种用法）
+         clientHeight：获取网页可视区域高度（两种用法）
+         调用者不同，意义不同：
+         盒子调用，指盒子本身；body/html调用，指可视区域大小。
+
+         （2）clientX 和 clientY
+         clientX：鼠标距离可视区域左侧距离（event调用）
+         clientY：鼠标距离可视区域上侧距离（event调用）
+
+         （3） clientTop 和 clientLeft
+         获取盒子的 border 宽高
+
+         总结：clientWidth  = width  + padding
+              clientHeight  = height + padding
+              clientY/clientX:（clientTop/clientLeft 值的是border）
+                调用者：event.clientX(event)
+                作用：鼠标距离浏览器可视区域的距离（左、上）
+    * */
+    var divClient=document.getElementById('client');
+    console.log('clientWidth  '+divClient.clientWidth);//300 这个是盒子调用，指的是盒子的可视区域
+    console.log('clientHeight  '+divClient.clientHeight);//300
+    divClient.onmousemove=function(event){
+        console.log('clientX  '+event.clientX);//他是为当前的事件绑定了.client;距离浏览器最左边的px 随着鼠标的移动不但的变化
+        console.log('clientY  '+event.clientY);//
+        console.log('clientTop  '+divClient.clientTop);//1  这个不是事件获取的，而是这个对象本身
+        console.log('clientLeft  '+divClient.clientLeft);//1
+    }
+
+</script>
+</html>

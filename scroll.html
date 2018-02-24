@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>scroll</title>
+    <style type="text/css">
+        #scroll{
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin: 20px;
+            padding: 30px;
+            border:1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+<div id="scroll"></div>
+
+</body>
+<script type="application/javascript">
+        /*
+        * 2. Scroll 系列
+         （1）scrollWidth 和 scrollHeight（不包括border）
+                检测盒子的宽高。（调用者：节点元素。属性。）
+                盒子内容的宽高。（如果有内容超出了，显示内容的高度）
+                IE567可以比盒子小。 IE8+火狐谷歌不能比盒子小
+                 scrollWidth   = 内容宽度（不包含border）
+                 scrollHeight  = 内容高度（不包含border）
+
+         （2）scrollTop 和 scrollLeft
+                网页，被浏览器遮挡的头部和左边部分。
+                被卷去的头部和左边部分。
+                scrollTop/scrollLeft:(盒子也可以调用，必须有滚动条)
+                调用者：document.body.scrollTop/.....(window)
+                作用：浏览器无法显示的部分（被卷去的部分）
+         （3）有兼容性问题
+                ① 未声明 DTD 时（谷歌只认识他）
+                document.body.scrollTop
+                ② 已经声明DTD 时（IE678只认识他）
+                document.documentElement.scrollTop
+                ③ 火狐/谷歌/ie9+以上支持的
+                window.pageYOffset
+         （4）兼容写法
+                var aaa = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+                var aaa = document.documentElement.scrollTop + document.body.scrollTop;
+        * */
+    var divScroll=document.getElementById('scroll');
+    console.log('scrollWidth  '+divScroll.scrollWidth);//260
+    console.log('scrollHeight  '+divScroll.scrollHeight);//260
+    console.log('scrollTop  '+divScroll.scrollTop);//0
+    console.log('scrollLeft  '+divScroll.scrollLeft);//0
+</script>
+</html>

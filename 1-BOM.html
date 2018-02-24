@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script type="application/javascript">
+    /*
+    * BOM知识的详解 :封装了浏览器的方法属性
+    *   window对象属性
+    *       .navigator对象
+    *       .location对象:window.location获取或者document.location
+    *       .screen对象
+    *       .history对象
+    *   window对象方法
+    *       .alert
+    *       .confirm
+    *       .open
+    *       .close
+    *       .prompt
+    *       .print
+    *
+    *
+    * window对象概述
+    *      .window对象是对浏览器窗口(某些方法和属性对应的是页签)的功能api的封装
+    *      .window是浏览器中的顶层对象(也就是说js的global对象就是window,Node中就是global)
+    *      .window常用属性
+    *           .console 用于浏览器控制台的访问
+    *           .innerHeight/innerWidth浏览器的宽度和高度(包括滚动条)
+    *           .name 设置或者读取窗口的名字
+    *      .window的常用方法
+    *           .moveTo(x,y)/moveBy(w,h)  移动窗口
+    *           .resizeTo(w,h)/resizeBy(w,h)  调整窗口大小
+    *           .alert
+    *          .confirm
+    *          .open
+    *          .close
+    *          .prompt
+    *          .print
+    *
+    *location对象：
+    *       属性：href\port\search\pathname\hostName\host\protocol\
+    *       方法：assign(url)\reload(true/false)\replace()
+    *
+    * navigator对象：
+    *       navigator.userAgent:返回当前浏览器的一些信息。用户代理
+    *
+    *
+    *
+    * */
+    //案例 获取url问号后面的 放到一个对象中key:value
+//    var str=location.search;
+    var str="?wd=this&rsv_spt=1&rsv_iqid=0x85559726000116a5&" +
+            "issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&rqlang=cn&" +
+            "tn=98012088_5_dg&ch=12&rsv_enter=0&rsv_t=ba04l2nU2" +
+            "3bVSkh4pF2Z1ti9en8%2FqI0n%2BujRbPMXvPJiIrnyXaeW9B9qDa" +
+            "%2F8uJkzx1tDAg&oq=this%2520%25E6%258C%2587%25E5%2590%2" +
+            "591%2520js&rsv_pq=eeeaf82f000541a2&inputT=5926&rsv_sug" +
+            "3=79&rsv_sug1=40&rsv_sug7=100&rsv_sug4=6673&rsv_sug=2";
+    var t=str.substring(1);
+    var m= t.split("&");
+//    console.log(m);
+    var obj={};
+    for(var i=0;i< m.length;i++){
+        obj[m[i].split("=")[0]]=m[i].split("=")[1];
+    }
+    console.log(obj);
+</script>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>event——事件对象</title>
+    <style type="text/css">
+        #event{
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin: 20px;
+            padding: 50px;
+            border:1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+    <div id="event">
+
+    </div>
+</body>
+<script type="application/javascript">
+    /*
+    * 4. event 事件对象
+     （1）概述
+     在触发DOM上的某个事件时，会产生一个事件对象event，这个对象中包含着所有与事件有关的信息。
+     所有浏览器都支持event对象，但支持的方式不同。
+     比如鼠标操作时候，会添加鼠标位置的相关信息到事件对象中。（类似Date）
+     普通浏览器支持 event（带参，任意参数）
+     ie 678 支持 window.event（无参，内置）
+     总结：他是一个事件中的内置对象。内部装了很多关于鼠标和事件本身的信息。
+
+     （2） 事件对象 event 的获取
+     IE678中，window.event
+     在火狐谷歌中，event或者，在事件绑定的函数中，加参，这个参数就是event.
+     Box.onclick = function (aaa){   aaa就是event     }
+
+     （3） 兼容获取方式有两种：
+     不写参数直接使用event;
+     写参数，但是参数为event
+     var event  = event || window.event;(主要用这种)
+
+
+     重要：
+        timeStamp:返回事件生成的日期和时间
+        bubbles:返回布尔值，指示事件是否启用冒泡事件类型
+        button:返回当事件被触发的时候，哪个鼠标按钮被点击
+        pageX,pageY:光标相对于网页的位置(IE无)
+        screenX,screenY:光标相对于屏幕的位置
+        target:该事件被传送到的对象
+        type:事件的类型
+        clientX,clientY:光标相对于该网页的位置  (当前的可视区域)
+        注意：   pageY/pageX: 鼠标位于整个网页页面的顶部和左侧部分的距离。（页面）
+                ScreenY/screenX: 鼠标位于屏幕的上方和左侧的距离。（屏幕）
+                clientX/clientY: 鼠标位于浏览器的左侧和顶部的距离。（浏览器大小和位置）
+                pageY 和 pageX 的兼容写法：
+                在页面的位置 = 看得见的 + 看不见的  ，主要是由于有滚动条，出现看不见的区域
+                pageY/pageX=event.clientY/clientX+scroll().top/scroll().left
+
+    * */
+    var divEvent=document.getElementById('event');
+    divEvent.onclick=function(event){
+        console.log('event  '+event);//当前这个div所被触发的事件的内置对象，内部有很多的鼠标和事件本身的信息
+        console.log('event.timeStamp  '+event.timeStamp);
+        console.log('event.bubbles  '+event.bubbles);//默认值为true,如果想阻止事件冒泡就设置event.cancelBubble = true; // IE   e.stopPropagation(); // 其他
+        console.log('event.button  '+event.button);//0 1 2
+        console.log('event.pageX  '+event.pageX);//这个是相对于网页而言
+        console.log('event.pageY  '+event.pageY);
+        console.log('event.screenX  '+event.screenX);//这个是相对于整个屏幕而言
+        console.log('event.screenY  '+event.screenY);
+        console.log('event.clientX  '+event.clientX);//这个是相对于浏览器而言
+        console.log('event.clientY  '+event.clientY);
+
+    }
+</script>
+</html>
